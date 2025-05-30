@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For you My Love</title>
+    <link rel="icon" type="image/x-icon" href="heart.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-hearts">
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-heart"></i>
+            </div>
+            <h1 class="loading-name" data-text="Imane">Imane</h1>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gift Button -->
+    <div class="gift-button-container" id="giftButton" style="display: none;">
+        <button class="gift-button" onclick="openGift()">
+            <i class="fas fa-gift"></i>
+            <span>Open Your Gift</span>
+        </button>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-player">
+        <button class="music-control" onclick="toggleMusic()">
+            <i class="fas fa-music"></i>
+        </button>
+        <div class="music-info">
+            <span id="currentSong">Click to play music</span>
+        </div>
+        <audio id="bgMusic" loop>
+            <source src="Ed Sheeran - Perfect.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- Interactive Buttons -->
+    <div class="interactive-buttons" style="position: fixed; top: 20px; left: 20px; z-index: 1000;">
+        <button class="interactive-button" onclick="createParticles()">
+            <i class="fas fa-wand-magic-sparkles"></i> Magic
+        </button>
+    </div>
+
+    <!-- Asian theme elements -->
+    <div class="mountain"></div>
+    <div class="asian-pattern"></div>
+    
+    <!-- Floating lanterns -->
+    <div class="lantern" style="left: 15%; animation-duration: 20s;"></div>
+    <div class="lantern" style="left: 35%; animation-duration: 25s;"></div>
+    <div class="lantern" style="left: 55%; animation-duration: 22s;"></div>
+    <div class="lantern" style="left: 75%; animation-duration: 28s;"></div>
+    
+    <!-- Enhanced Cherry blossom petals -->
+    <div class="petal" style="width: 15px; height: 15px; left: 10%; animation-duration: 10s;"></div>
+    <div class="petal" style="width: 10px; height: 10px; left: 20%; animation-duration: 8s;"></div>
+    <div class="petal" style="width: 12px; height: 12px; left: 30%; animation-duration: 12s;"></div>
+    <div class="petal" style="width: 8px; height: 8px; left: 40%; animation-duration: 9s;"></div>
+    <div class="petal" style="width: 15px; height: 15px; left: 50%; animation-duration: 11s;"></div>
+    <div class="petal" style="width: 10px; height: 10px; left: 60%; animation-duration: 10s;"></div>
+    <div class="petal" style="width: 12px; height: 12px; left: 70%; animation-duration: 8s;"></div>
+    <div class="petal" style="width: 8px; height: 8px; left: 80%; animation-duration: 12s;"></div>
+    <div class="petal" style="width: 15px; height: 15px; left: 90%; animation-duration: 9s;"></div>
+    <div class="petal" style="width: 10px; height: 10px; left: 25%; animation-duration: 7s;"></div>
+    <div class="petal" style="width: 12px; height: 12px; left: 45%; animation-duration: 13s;"></div>
+    <div class="petal" style="width: 8px; height: 8px; left: 65%; animation-duration: 11s;"></div>
+    <div class="petal" style="width: 15px; height: 15px; left: 85%; animation-duration: 9s;"></div>
+    
+    <div class="container">
+        <div class="content-area">
+            <div class="text-section">
+                <p id="typing-text"></p>
+            </div>
+            <div class="heart-tree-section">
+                <div class="tree-wrapper">
+                    <div class="hearts-container"></div>
+                </div>
+                <!-- Heart tree animation will go here -->
+            </div>
+        </div>
+        <div class="counter-section">
+            <!-- Counter will go here -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Loading screen functionality
+        window.addEventListener('load', function() {
+            // Hide all elements initially
+            const mainContent = document.querySelector('.container');
+            const musicPlayer = document.querySelector('.music-player');
+            const interactiveButtons = document.querySelector('.interactive-buttons');
+            
+            mainContent.style.opacity = '0';
+            musicPlayer.style.opacity = '0';
+            interactiveButtons.style.opacity = '0';
+            
+            setTimeout(function() {
+                const loadingScreen = document.getElementById('loadingScreen');
+                const giftButton = document.getElementById('giftButton');
+                
+                // Fade out loading screen
+                loadingScreen.style.opacity = '0';
+                
+                setTimeout(function() {
+                    // Hide loading screen and show gift button
+                    loadingScreen.style.display = 'none';
+                    giftButton.style.display = 'flex';
+                    giftButton.classList.add('visible');
+                    
+                    // Fade in gift button
+                    setTimeout(() => {
+                        giftButton.style.opacity = '1';
+                    }, 100);
+                }, 500);
+            }, 1500);
+        });
+
+        // Gift button functionality
+        function openGift() {
+            const giftButton = document.getElementById('giftButton');
+            const mainContent = document.querySelector('.container');
+            const musicPlayer = document.querySelector('.music-player');
+            const interactiveButtons = document.querySelector('.interactive-buttons');
+            
+            // Fade out gift button
+            giftButton.style.opacity = '0';
+            giftButton.classList.remove('visible');
+            
+            // Fade in main content and controls
+            mainContent.style.opacity = '1';
+            musicPlayer.style.opacity = '1';
+            interactiveButtons.style.opacity = '1';
+            
+            setTimeout(() => {
+                giftButton.style.display = 'none';
+            }, 500);
+        }
+
+        // Music player functionality
+        const bgMusic = document.getElementById('bgMusic');
+        const currentSongDisplay = document.getElementById('currentSong');
+
+        function toggleMusic() {
+            if (bgMusic.paused) {
+                bgMusic.play();
+                currentSongDisplay.textContent = "Music Playing";
+            } else {
+                bgMusic.pause();
+                currentSongDisplay.textContent = "Click to play music";
+            }
+        }
+
+        // New interactive functions
+        function createParticles() {
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.fontSize = Math.random() * 15 + 15 + 'px'; // Random size between 15px and 30px
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = '100vh';
+                particle.style.animationDuration = Math.random() * 4 + 3 + 's';
+                document.body.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, 7000);
+            }
+        }
+
+        // Enhanced click effect
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.interactive-element')) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
+                heart.style.left = e.pageX + 'px';
+                heart.style.top = e.pageY + 'px';
+                document.body.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html> 
