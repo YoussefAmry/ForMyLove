@@ -35,16 +35,16 @@
 
     <!-- Music Player -->
     <div class="music-player">
-        <div class="music-info-area" style="display: flex; flex-direction: column; align-items: center; width: 160px;">
-            <img id="songImage" src="heart.png" alt="Song Cover" style="width: 80px; height: 80px; object-fit: cover; border-radius: 16px; margin-bottom: 8px;">
-            <div id="currentSongName" style="font-size: 16px; color: #FF69B4; margin-bottom: 8px; text-align: center;">Song Name</div>
-            <div class="volume-slider-container" style="position: relative; display: flex; flex-direction: column; align-items: center; width: 120px;">
-                <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1" title="Volume" style="width: 120px;">
+        <div class="music-info-area">
+            <img id="songImage" src="heart.png" alt="Song Cover">
+            <div id="currentSongName">Song Name</div>
+            <div class="volume-slider-container">
+                <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1" title="Volume">
             </div>
-            <div class="music-controls" style="display: flex; justify-content: center; align-items: center; gap: 18px; margin-top: 8px;">
-                <button class="music-skip music-prev" id="prevBtn" title="Previous" style="background: none; border: none; font-size: 28px; color: #FF69B4; cursor: pointer;"><i class="fas fa-backward"></i></button>
-                <button class="music-control" id="playPauseBtn" title="Play/Pause" style="width: 40px; height: 40px;"><i class="fas fa-play"></i></button>
-                <button class="music-skip music-next" id="nextBtn" title="Next" style="background: none; border: none; font-size: 28px; color: #FF69B4; cursor: pointer;"><i class="fas fa-forward"></i></button>
+            <div class="music-controls">
+                <button class="music-skip music-prev" id="prevBtn" title="Previous"><i class="fas fa-backward"></i></button>
+                <button class="music-control" id="playPauseBtn" title="Play/Pause"><i class="fas fa-play"></i></button>
+                <button class="music-skip music-next" id="nextBtn" title="Next"><i class="fas fa-forward"></i></button>
             </div>
         </div>
         <audio id="bgMusic" loop>
