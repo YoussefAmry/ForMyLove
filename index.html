@@ -35,14 +35,20 @@
 
     <!-- Music Player -->
     <div class="music-player">
-        <button class="music-control" onclick="toggleMusic()">
-            <i class="fas fa-music"></i>
-        </button>
-        <div class="music-info">
-            <span id="currentSong">Click to play music</span>
+        <div class="music-info-area" style="display: flex; flex-direction: column; align-items: center; width: 160px;">
+            <img id="songImage" src="heart.png" alt="Song Cover" style="width: 80px; height: 80px; object-fit: cover; border-radius: 16px; margin-bottom: 8px;">
+            <div id="currentSongName" style="font-size: 16px; color: #FF69B4; margin-bottom: 8px; text-align: center;">Song Name</div>
+            <div class="volume-slider-container" style="position: relative; display: flex; flex-direction: column; align-items: center; width: 120px;">
+                <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1" title="Volume" style="width: 120px;">
+            </div>
+            <div class="music-controls" style="display: flex; justify-content: center; align-items: center; gap: 18px; margin-top: 8px;">
+                <button class="music-skip music-prev" id="prevBtn" title="Previous" style="background: none; border: none; font-size: 28px; color: #FF69B4; cursor: pointer;"><i class="fas fa-backward"></i></button>
+                <button class="music-control" id="playPauseBtn" title="Play/Pause" style="width: 40px; height: 40px;"><i class="fas fa-play"></i></button>
+                <button class="music-skip music-next" id="nextBtn" title="Next" style="background: none; border: none; font-size: 28px; color: #FF69B4; cursor: pointer;"><i class="fas fa-forward"></i></button>
+            </div>
         </div>
         <audio id="bgMusic" loop>
-            <source src="Ed Sheeran - Perfect.mp3" type="audio/mpeg">
+            <source src="Bruno Mars - Count on Me (Lyrics).mp3" type="audio/mpeg">
         </audio>
     </div>
 
@@ -82,6 +88,7 @@
         <div class="content-area">
             <div class="text-section">
                 <p id="typing-text"></p>
+                <button id="changeMessageBtn" class="interactive-button" style="margin-top: 24px;"><i class="fas fa-envelope-open"></i> Change Message</button>
             </div>
             <div class="heart-tree-section">
                 <div class="tree-wrapper">
@@ -95,107 +102,13 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
     <script>
-        // Loading screen functionality
-        window.addEventListener('load', function() {
-            // Hide all elements initially
-            const mainContent = document.querySelector('.container');
-            const musicPlayer = document.querySelector('.music-player');
-            const interactiveButtons = document.querySelector('.interactive-buttons');
-            
-            mainContent.style.opacity = '0';
-            musicPlayer.style.opacity = '0';
-            interactiveButtons.style.opacity = '0';
-            
-            setTimeout(function() {
-                const loadingScreen = document.getElementById('loadingScreen');
-                const giftButton = document.getElementById('giftButton');
-                
-                // Fade out loading screen
-                loadingScreen.style.opacity = '0';
-                
-                setTimeout(function() {
-                    // Hide loading screen and show gift button
-                    loadingScreen.style.display = 'none';
-                    giftButton.style.display = 'flex';
-                    giftButton.classList.add('visible');
-                    
-                    // Fade in gift button
-                    setTimeout(() => {
-                        giftButton.style.opacity = '1';
-                    }, 100);
-                }, 500);
-            }, 1500);
-        });
-
-        // Gift button functionality
-        function openGift() {
-            const giftButton = document.getElementById('giftButton');
-            const mainContent = document.querySelector('.container');
-            const musicPlayer = document.querySelector('.music-player');
-            const interactiveButtons = document.querySelector('.interactive-buttons');
-            
-            // Fade out gift button
-            giftButton.style.opacity = '0';
-            giftButton.classList.remove('visible');
-            
-            // Fade in main content and controls
-            mainContent.style.opacity = '1';
-            musicPlayer.style.opacity = '1';
-            interactiveButtons.style.opacity = '1';
-            
-            setTimeout(() => {
-                giftButton.style.display = 'none';
-            }, 500);
+        // Mobile detection
+        function isMobile() {
+            return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         }
-
-        // Music player functionality
-        const bgMusic = document.getElementById('bgMusic');
-        const currentSongDisplay = document.getElementById('currentSong');
-
-        function toggleMusic() {
-            if (bgMusic.paused) {
-                bgMusic.play();
-                currentSongDisplay.textContent = "Music Playing";
-            } else {
-                bgMusic.pause();
-                currentSongDisplay.textContent = "Click to play music";
-            }
-        }
-
-        // New interactive functions
-        function createParticles() {
-            for (let i = 0; i < 30; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.fontSize = Math.random() * 15 + 15 + 'px'; // Random size between 15px and 30px
-                particle.style.left = Math.random() * 100 + 'vw';
-                particle.style.top = '100vh';
-                particle.style.animationDuration = Math.random() * 4 + 3 + 's';
-                document.body.appendChild(particle);
-                
-                setTimeout(() => {
-                    particle.remove();
-                }, 7000);
-            }
-        }
-
-        // Enhanced click effect
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.interactive-element')) {
-                const heart = document.createElement('div');
-                heart.className = 'floating-heart';
-                heart.innerHTML = '<i class="fas fa-heart"></i>';
-                heart.style.left = e.pageX + 'px';
-                heart.style.top = e.pageY + 'px';
-                document.body.appendChild(heart);
-                
-                setTimeout(() => {
-                    heart.remove();
-                }, 3000);
-            }
-        });
+        window.isMobileDevice = isMobile(); // Expose to script.js
     </script>
+    <script src="script.js"></script>
 </body>
 </html> 

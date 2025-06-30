@@ -59,6 +59,7 @@ body::after {
     animation: falling linear infinite;
     z-index: -1;
     filter: drop-shadow(0 0 3px rgba(255, 182, 193, 0.5));
+    will-change: transform;
 }
 
 .petal::before {
@@ -138,6 +139,7 @@ body::after {
     z-index: -1;
     animation: floatLantern linear infinite;
     filter: drop-shadow(0 0 10px rgba(255, 182, 193, 0.5));
+    will-change: transform;
 }
 
 .lantern::before {
@@ -400,6 +402,7 @@ body::after {
 
 .floating-heart {
     animation: floatAway 5s ease-out forwards; /* Adjust duration and timing as needed */
+    will-change: transform;
 }
 
 /* Styles for the heart tree elements will be added later */
@@ -636,6 +639,7 @@ body::after {
     font-size: 20px;
     animation: particleFloat linear infinite;
     z-index: 100;
+    will-change: transform;
 }
 
 .particle::before {
@@ -1046,4 +1050,70 @@ body.dark-theme .theme-toggle i {
     75% {
         transform: rotate(10deg);
     }
+}
+
+/* Heart Wavy Volume Slider Styles */
+#volumeSlider {
+    -webkit-appearance: none;
+    width: 120px;
+    height: 36px;
+    background: transparent;
+    position: relative;
+    margin: 0 10px;
+    z-index: 1;
+}
+#volumeSlider::-webkit-slider-runnable-track {
+    height: 36px;
+    background: url('data:image/svg+xml;utf8,<svg width="120" height="36" viewBox="0 0 120 36" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 18 Q 20 0, 40 18 T 80 18 T 120 18" stroke="%23FF69B4" stroke-width="4" fill="none"/></svg>') no-repeat center center;
+    background-size: 100% 100%;
+    border-radius: 18px;
+}
+#volumeSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 32px;
+    height: 32px;
+    background: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 29l-2.8-2.55C6.72 20.48 2 15.2 2 9.5 2 5.36 5.36 2 9.5 2c2.2 0 4.31 1.02 5.5 2.64C16.19 3.02 18.3 2 20.5 2 24.64 2 28 5.36 28 9.5c0 5.7-4.72 10.98-11.2 16.95L16 29z" fill="%23FF69B4"/></svg>') no-repeat center center/contain;
+    border: none;
+    cursor: pointer;
+    margin-top: 2px;
+    box-shadow: 0 2px 8px rgba(255,182,193,0.2);
+    transition: transform 0.2s;
+}
+#volumeSlider:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #ffb6c1;
+}
+#volumeSlider::-ms-fill-lower {
+    background: transparent;
+}
+#volumeSlider::-ms-fill-upper {
+    background: transparent;
+}
+#volumeSlider::-moz-range-thumb {
+    width: 32px;
+    height: 32px;
+    background: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 29l-2.8-2.55C6.72 20.48 2 15.2 2 9.5 2 5.36 5.36 2 9.5 2c2.2 0 4.31 1.02 5.5 2.64C16.19 3.02 18.3 2 20.5 2 24.64 2 28 5.36 28 9.5c0 5.7-4.72 10.98-11.2 16.95L16 29z" fill="%23FF69B4"/></svg>') no-repeat center center/contain;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(255,182,193,0.2);
+    transition: transform 0.2s;
+}
+#volumeSlider::-moz-range-track {
+    height: 36px;
+    background: url('data:image/svg+xml;utf8,<svg width="120" height="36" viewBox="0 0 120 36" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 18 Q 20 0, 40 18 T 80 18 T 120 18" stroke="%23FF69B4" stroke-width="4" fill="none"/></svg>') no-repeat center center;
+    background-size: 100% 100%;
+    border-radius: 18px;
+}
+#volumeSlider::-ms-thumb {
+    width: 32px;
+    height: 32px;
+    background: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 29l-2.8-2.55C6.72 20.48 2 15.2 2 9.5 2 5.36 5.36 2 9.5 2c2.2 0 4.31 1.02 5.5 2.64C16.19 3.02 18.3 2 20.5 2 24.64 2 28 5.36 28 9.5c0 5.7-4.72 10.98-11.2 16.95L16 29z" fill="%23FF69B4"/></svg>') no-repeat center center/contain;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(255,182,193,0.2);
+    transition: transform 0.2s;
+}
+#volumeSlider::-ms-tooltip {
+    display: none;
 } 
